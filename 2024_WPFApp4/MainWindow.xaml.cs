@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -13,8 +14,12 @@ namespace _2024_WPFApp4
     {
         // 畫筆顏色和畫筆畫刷的初始值
         Color strokecolor = Colors.Black;
+        Color fillcolor = Colors.Aqua;
         Brush strokebrush = Brushes.Black;
-
+        Brush fillbrush = Brushes.Aqua;
+        string shape;
+        int strokeThickness = 2;
+        
         // 起始點和終點的座標
         Point start, dest;
 
@@ -24,6 +29,7 @@ namespace _2024_WPFApp4
             InitializeComponent();
             // 初始化顏色選擇器為黑色
             strokeColorPicker.SelectedColor = strokecolor;
+            fillColorPicker.SelectedColor = fillcolor;
         }
 
         /// <summary>
@@ -75,6 +81,34 @@ namespace _2024_WPFApp4
         {
             // 更新畫筆顏色為選擇器選中的顏色
             strokecolor = strokeColorPicker.SelectedColor.Value;
+        }
+
+        private void fillColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            fillcolor = fillColorPicker.SelectedColor.Value;
+        }
+
+        private void ShapeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            var button = sender as RadioButton;
+            shape = button.Tag.ToString();
+            MessageBox.Show(shape);
+        }
+
+        private void EraseButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void strokeThicknessSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            strokeThickness = (int) strokeThicknessSlider.Value; 
         }
 
         /// <summary>
